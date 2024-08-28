@@ -1,0 +1,223 @@
+:root {
+  background-color: black;
+  color: white;
+}
+
+.page {
+  margin: auto;
+  width: 880px;
+  max-width: 100%;
+  min-width: 320px;
+  padding: ;
+}
+.line {
+  border: 1px solid #545454;
+  margin: auto;
+  margin-bottom: 40px;
+}
+
+.header {
+  width: 880px;
+  max-width: 100%;
+  margin: auto;
+}
+.header__image {
+  width: 175px;
+  max-width: 100%;
+  padding-bottom: 40px;
+  display: block;
+  padding-bottom: 40px;
+  align-items: center;
+  padding-top: 45px;
+}
+
+.section__container {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.section {
+  width: 880px;
+  max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 0;
+  padding-bottom: 50px;
+}
+
+.section_avatar {
+  width: 170px;
+  max-width: 100%;
+  border-radius: 50%;
+  margin-right: 30px;
+}
+
+.button__image {
+  display: block;
+  width: 22px;
+  height: 22px;
+  margin: 0 auto;
+}
+.section__button {
+  width: 150px;
+  max-width: 100%;
+  height: 50px;
+  max-height: 50px;
+  border: 2px solid #ffffff;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+.section__edit {
+  width: 24px;
+  height: 24px;
+  max-height: 50px;
+  border: 2px solid #ffffff;
+  display: flex;
+  align-items: center;
+  background-color: black;
+}
+.pen__image {
+  display: block;
+  width: 10px;
+  height: 10px;
+  margin: 0 auto;
+}
+.section__profile-info {
+  font-family: Inter;
+  font-size: 42px;
+  font-weight: 500;
+  line-height: 48px;
+  text-align: left;
+  margin: auto;
+}
+
+.section__profile-tag {
+  font-family: Inter;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.78px;
+  text-align: left;
+  margin: auto;
+  padding-top: 16px;
+}
+.card {
+  margin: auto;
+  width: 282px;
+}
+
+.cards {
+  margin: auto;
+  width: 880px;
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(282px, 1fr));
+  gap: 17px;
+}
+
+.card__image {
+  display: block;
+  width: 282px;
+  max-width: 100%;
+  margin: 0;
+}
+
+.Card__contenedor {
+  width: 282px;
+  max-width: 100%;
+  background-color: white;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 5px;
+  padding: 25px 0 31px 0;
+  border-radius: 0px 0 10px 10px;
+}
+
+.card__titel {
+  margin: 0;
+  color: black;
+  font-family: Inter;
+  width: 246px;
+  max-width: 246px;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 29.05px;
+  text-align: left;
+}
+
+@media screen and (max-width: 880px) {
+  .card {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+  }
+
+  .cards {
+    width: 100%;
+    padding: 0 19px 0 19px;
+    box-sizing: border-box;
+  }
+
+  .card__image {
+    width: 100%;
+  }
+
+  .Card__contenedor {
+    width: 100%;
+  }
+
+  .section {
+    padding: 0 10px 50px 10px;
+    box-sizing: border-box;
+  }
+  .section__button {
+    width: 100%;
+    margin: auto;
+    margin-top: 20px;
+   
+  }
+
+  .section__profile-tag {
+   
+    text-align: center;
+    
+ 
+}
+
+@media screen and (max-width: 630px) {
+  .section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    padding: 19px;
+    box-sizing: border-box;
+  }
+
+  .section_avatar {
+    width: 120px;
+    max-width: 100%;
+    border-radius: 50%;
+    margin: auto;
+  }
+
+  .button__image {
+    display: block;
+
+    margin: 0 auto;
+  }
+  .section__button {
+    width: 100%;
+    margin: auto;
+    margin-top: 20px;
+  }
+  .section__profile-tag {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+  }
+}
