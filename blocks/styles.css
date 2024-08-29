@@ -132,7 +132,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  
+
   padding: 25px 0 31px 0;
   border-radius: 0px 0 10px 10px;
 }
@@ -149,15 +149,87 @@
   text-align: center;
 }
 
-.card__button{
-padding-right: 18px;
-
+.card__button {
+  padding-right: 18px;
 }
 
-@media screen and (max-width: 880px) {
+.footer__copyright {
+  padding-top: 5px;
+  padding-left: 19px;
+  box-sizing: border-box;
+  margin: auto;
+  font-family: Inter;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.78px;
+  text-align: left;
+  color: #545454;
+}
 
-  .header__image{
-    padding-left: 27px ;
+::placeholder {
+  color: backgrou #c4c4c4;
+}
+
+.form__fieldset {
+  width: 430px;
+  height: 330px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border-radius: 10px 10px 10px 10px;
+  border-color: transparent;
+}
+
+.form__title {
+  margin: auto;
+  width: 360px;
+  font-family: Inter;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 29.05px;
+  text-align: left;
+  color: black;
+}
+
+.form__input {
+  width: 360px;
+  margin: 30px auto 0 auto;
+  padding: 15px 0 0 0;
+  border-color: transparent;
+  border-bottom: 2px solid #dadada;
+  font-family: Inter;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16.94px;
+  text-align: left;
+}
+
+.submit__button {
+  margin: auto;
+  width: 360px;
+  height: 50px;
+  font-family: Inter;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.78px;
+  text-align: center;
+  color: #ffffff;
+  background-color: black;
+}
+
+button:hover {
+background-color: grey;
+border-color: transparent;
+
+}
+.card__button:hover{
+  opacity: 60%;
+  cursor: pointer;
+}
+@media screen and (max-width: 880px) {
+  .header__image {
+    padding-left: 27px;
   }
   .card {
     width: 100%;
@@ -192,19 +264,18 @@ padding-right: 18px;
   .section__profile-tag {
     text-align: center;
   }
-  
-  .section__container{
+
+  .section__container {
     padding-top: 10px;
     padding-bottom: 14px;
     width: 100%;
   }
-  .card__title{
+  .card__title {
     font-family: Inter;
-font-size: 24px;
-font-weight: 900;
-line-height: 29.05px;
-text-align: left;
-
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 29.05px;
+    text-align: left;
   }
 }
 
@@ -249,14 +320,11 @@ text-align: left;
     margin: auto;
   }
 
-
-  .card__title{
+  .card__title {
     font-family: Inter;
-font-size: 24px;
-font-weight: 900;
-line-height: 29.05px;
-text-align: left;
-
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 29.05px;
+    text-align: left;
   }
 }
-
