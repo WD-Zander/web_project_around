@@ -1,0 +1,19 @@
+.header {
+    width: 880px;
+    max-width: 100%;
+    margin: auto;
+  }
+  .header__image {
+    width: 175px;
+    max-width: 100%;
+    padding-bottom: 40px;
+    display: block;
+    padding-bottom: 40px;
+    align-items: center;
+    padding-top: 45px;
+  }
+  
+  @media screen and (max-width: 880px) {
+    .header__image {
+      padding-left: 27px;
+    } }
