@@ -9,11 +9,11 @@ let closeButton = document.querySelector('.form__close');
 function openModal() {
     formModal.style.visibility = 'visible'; // Muestra el modal
 }
-visibility= 'visible';
+
 
 // Función para cerrar el modal
 function closeModal() {
-  formModal.style.display = 'none'; // Oculta el modal
+  formModal.style.visibility = 'hidden'; // Oculta el modal
 }
 
 // Añade el evento 'click' al botón para abrir el modal
