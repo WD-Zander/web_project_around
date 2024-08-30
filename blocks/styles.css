@@ -195,6 +195,7 @@
  display: flex;
  align-items: center;
  justify-content: center;
+ visibility:  hidden;
 
 
 }
@@ -371,60 +372,7 @@ button:hover {
 
  
 }
-//*@media screen and (max-width: 320px) {
 
-.form {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  min-width: 272px;
-}
-
-.form__fieldset {
-  width: 282px;
-  height: 322px;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  background-color: #ffffff;
-  border-radius: 10px 10px 10px 10px;
-  border-color: transparent;
-}
-
-.form__title {
-  margin: auto;
-  width: 360px;
-  font-family: Inter;
-  font-size: 18px;
-  font-weight: 900;
-  line-height: 21.78px;
-  text-align: left;
-}
-
-.form__input {
-  width: 360px;
-  margin: 30px auto 0 auto;
-  padding: 15px 0 0 0;
-  border-color: transparent;
-  border-bottom: 2px solid #dadada;
-  font-family: Inter;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 16.94px;
-  text-align: left;
-}
-
-.submit__button {
-  margin: auto;
-  width: 360px;
-  height: 50px;
-  font-family: Inter;
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 21.78px;
-  text-align: center;
-  color: #ffffff;
-  background-color: black;
-}
+.open-popup {
+  visibility: visible;
 }
