@@ -5,11 +5,11 @@ let formModal = document.querySelector(".form");
 let closeButton = document.querySelector(".form__close");
 
 function openModal() {
-  formModal.style.visibility = "visible";
+  formModal.style.display = "flex";
 }
 
 function closeModal() {
-  formModal.style.visibility = "hidden";
+  formModal.style.display = "none";
 }
 
 editButton.addEventListener("click", openModal);

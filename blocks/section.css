@@ -1,3 +1,19 @@
+
+
+.section__button:hover{
+
+  opacity: 60%;
+  cursor: pointer;
+  
+}
+
+.section__edit:hover{
+
+
+  opacity: 60%;
+  cursor: pointer;
+}
+
 .section__container {
     display: flex;
     align-items: center;
