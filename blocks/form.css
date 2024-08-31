@@ -1,6 +1,5 @@
 .form__close {
     width: 40px;
-  
     position: absolute;
     top: -15%;
     right: 0;
@@ -75,6 +74,21 @@
     line-height: 16.94px;
     text-align: left;
   }
+
+  .form__input-about {
+    max-width: 360px;
+    width: 100%;
+    margin: 30px auto 0 auto;
+    padding: 15px 0 0 0;
+    border-color: transparent;
+    border-bottom: 2px solid #dadada;
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.94px;
+    text-align: left;
+  }
+  
   
   .submit__button {
     margin: auto;
