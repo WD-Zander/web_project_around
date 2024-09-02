@@ -12,6 +12,7 @@ function openModal() {
   formModal.style.display = "flex";
   inputName.value = h1.textContent;
   inputAbout.value = h2.textContent;
+  buttonColor.style.backgroundColor = "#FFFFFF";
 }
 
 function closeModal() {
