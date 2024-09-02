@@ -27,38 +27,32 @@ El objetivo del proyecto fue crear un formulario interactivo que permita a los u
 ## Código Principal
 
 ```javascript
-let form = document.querySelector('.form');
-let inputName = document.querySelector('.form__input');
-let h1 = document.querySelector('.section__profile-info');
-
-let InputaboutMe = document.querySelector('.form__input-about');
-let h2 = document.querySelector('.section__profile-tag');
-
-form.addEventListener('submit', function (event) {
-    event.preventDefault();
-    let getName = inputName.value;
-
-    let aboutMe = InputaboutMe.value;
-    h1.textContent = getName;
-
-    h2.textContent = aboutMe;
-
-    closeModal();
-});
-
 let editButton = document.querySelector(".section__edit");
 let formModal = document.querySelector(".form");
 let closeButton = document.querySelector(".form__close");
+let form = document.querySelector('.form');
+let inputName = document.querySelector('.form__input');
+let h1 = document.querySelector('.section__profile-info');
+let inputAbout = document.querySelector('.form__input-about');
+let h2 = document.querySelector('.section__profile-tag');
+let buttonColor = document.querySelector('.submit__button')
 
 function openModal() {
-  formModal.style.visibility = "visible";
+  formModal.style.display = "flex";
+  inputName.value = h1.textContent;
+  inputAbout.value = h2.textContent;
 }
 
 function closeModal() {
-  formModal.style.visibility = "hidden";
+  formModal.style.display = "none";
+}
+
+function changeButtonColor() {
+  buttonColor.style.backgroundColor = "#000000"; 
 }
 
 editButton.addEventListener("click", openModal);
+
 closeButton.addEventListener("click", closeModal);
 
 window.addEventListener("click", function (event) {
@@ -66,7 +60,19 @@ window.addEventListener("click", function (event) {
     closeModal();
   }
 });
-```
+
+form.addEventListener('submit', function (event) {
+  event.preventDefault();
+  let getName = inputName.value;
+  let aboutMe = inputAbout.value;
+  h1.textContent = getName;
+  h2.textContent = aboutMe;
+  closeModal();
+});
+
+
+inputName.addEventListener('input', changeButtonColor);
+inputAbout.addEventListener('input', changeButtonColor);
 
 ## Metadatos del Proyecto
 
