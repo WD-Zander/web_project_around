@@ -34,6 +34,7 @@ let closePopupImage = document.querySelector(".popup");
 
 ///////////////////////////////////
 
+
 function openImage(name, link) {
 
   closePopupImage.classList.add("popup__open");
@@ -44,6 +45,9 @@ function openImage(name, link) {
   titleElement.textContent = name;
 
 }
+
+
+
 function generateCard(name, link) {
   const cardTemplate = document.querySelector(".template"); // Creo una variable que toma la clase .template deon DOM
   const createCard = cardTemplate.content
@@ -57,9 +61,17 @@ function generateCard(name, link) {
     openImage(name, link); // Llamo a la Funcion que Genera las Cards y le paso 2 Parametros  (nameValue, urlLinks)
   });
 
+
+  const removeCard = createCard.querySelector(".card__trash") // Declaro la Variable = createCard Ya Contiene todos la Datos del Template !IMPORTANTE!
+  removeCard.addEventListener('click', function () {
+    createCard.remove(); // ELIMINA LA TARJETA SELECCIONADA
+  })
+
+
   showImage.src = link; // Selecciono los Parametros  link = Url
   createCard.querySelector(".card__titel").textContent = name; // name Titulo
   return createCard;
+
 }
 
 
@@ -155,3 +167,9 @@ form.addEventListener("submit", function (event) {
 
 inputName.addEventListener("input", changeButtonColor);
 inputAbout.addEventListener("input", changeButtonColor);
+
+
+
+
+
+
