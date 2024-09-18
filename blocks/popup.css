@@ -40,6 +40,9 @@
 .popup__image{
   max-width: 75vw;
   max-height: 75vh;
+  border-radius: 5px;
+  
+  box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.5);
  
 
  
@@ -67,4 +70,21 @@
 
   opacity: 150%;
   cursor: pointer;
+}
+
+
+
+.popup__titel{
+  font-family: Inter;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 29.05px;
+  text-align: left;
+  color: white;
+}
+
+
+.popou__title-container{
+  display: flex;
+  justify-content: center;
 }
