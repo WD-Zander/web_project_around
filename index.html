@@ -41,100 +41,10 @@
         </div>
       </section>
       <main class="cards">
-        <div class="card">
-          <img
-            src="./image/cards-iamge/ValledeYosemite.png"
-            alt=""
-            class="card__image"
-          />
-          <div class="Card__contenedor">
-            <h2 class="card__titel">Valle de Yosemite</h2>
-            <img
-              src="./image/card-button/Group.svg"
-              alt=""
-              class="card__button"
-            />
-          </div>
-        </div>
-        <div class="card">
-          <img
-            src="./image/cards-iamge/lagolouise.png"
-            alt=""
-            class="card__image"
-          />
-          <div class="Card__contenedor">
-            <h2 class="card__titel">Lago Louise</h2>
-            <img
-              src="./image/card-button/Group.svg"
-              alt=""
-              class="card__button"
-            />
-          </div>
-        </div>
-        <div class="card">
-          <img
-            src="./image/cards-iamge/montanas.png"
-            alt=""
-            class="card__image"
-          />
-          <div class="Card__contenedor">
-            <h2 class="card__titel">Montañas Calvas</h2>
-            <img
-              src="./image/card-button/Group.svg"
-              alt=""
-              class="card__button"
-            />
-          </div>
-        </div>
-        <div class="card">
-          <img
-            src="./image/cards-iamge/latemar.png"
-            alt=""
-            class="card__image"
-          />
-          <div class="Card__contenedor">
-            <h2 class="card__titel">Latemar</h2>
-            <img
-              src="./image/card-button/Group.svg"
-              alt=""
-              class="card__button"
-            />
-          </div>
-        </div>
-        <div class="card">
-          <img
-            src="./image/cards-iamge/vanois.png"
-            alt=""
-            class="card__image"
-          />
-          <div class="Card__contenedor">
-            <h2 class="card__titel">Vanois National Park</h2>
-            <img
-              src="./image/card-button/Group.svg"
-              alt=""
-              class="card__button"
-            />
-          </div>
-        </div>
-        <div class="card">
-          <img
-            src="./image/cards-iamge/lagolouise.png"
-            alt=""
-            class="card__image"
-          />
-          <div class="Card__contenedor">
-            <h2 class="card__titel">Lago di Braies</h2>
-              
-            <img
-              src="./image/card-button/Group.svg"
-              alt=""
-              class="card__button"
-            />  
-          </div>
-        </div>
+     
       </main>
       <footer class="footer">
-        <p class="footer__copyright">© 2024 Zander Garcia</p>
+        <p class="footer__copyright">© 2024 Zander Garcia - Aroud The U.S. </p>
       </footer>
       <form class="form">
 <div class="form__fild">
@@ -156,9 +66,84 @@
         </fieldset>
         <img src="./image/CloseIcon.png" alt="" class="form__close">
       </div>
+      
       </form>
+
+      <form class="form__new-place">
+        <div class="form__fild form__fild--place">
+          <fieldset class="form__fieldset form__fild--place">
+            <h2 class="form__title">Nuevo Lugar</h2>
+            <input
+              type="text"
+              placeholder="Titulo"
+              required
+              class="form__input form__fild--place"
+              name="nameTitle"
+               
+            />
+            <input
+            id="urlLink"
+              type="url"
+              placeholder="Url Imagen"
+              required
+              class="form__input-about form__fild--place"
+              name="urlLink"
+           
+            />
+            <button type="submit" class="submit__button form__fild--place">Guardar</button>
+          </fieldset>
+          <img src="./image/CloseIcon.png" alt="" class="form__close form__close-place">
+        </div>
+      </form>
+      
+    </div>
+
+    <div class="popup">
+      <div class="popup__overlay">
+      
+      <div class="card">
+        <img
+          src=""
+          alt=""
+          class="card__image"
+      
+           
+        />
+        <div class="Card__contenedor">
+          <h2 class="card__titel"></h2>
+            
+         
+        </div>
+        <div class="popup__button-container">
+        <button class="popup__button"> <img src="./image/icone-x-noir.png" alt="" class="popup__close" ></button>
+      </div>
+        </div>
+      </div>
+
     </div>
   </body>
+
+  <template id="template" class="template">
+    <div class="card">
+      <img
+        src=""
+        alt=""
+        class="card__image"
+        
+      />
+      <div class="Card__contenedor">
+        <h2 class="card__titel"></h2>
+          
+        <img
+          src="./image/card-button/Group.svg"
+          alt=""
+          class="card__button"
+        />  
+      </div>
+    </div>
+
+  </template>
+
   <script src="./Scripts/index.js"></script>
  
  

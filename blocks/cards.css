@@ -12,6 +12,7 @@
 .card {
   margin: auto;
   width: 282px;
+ 
 }
 
 .cards {
@@ -21,14 +22,19 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(282px, 1fr));
   gap: 17px;
+ 
   
 }
 
 .card__image {
   display: block;
   width: 282px;
+  height: 282px;
   max-width: 100%;
   margin: 0;
+  border-radius: 5px 5px 0 0;
+ 
+ 
 }
 
 .Card__contenedor {
@@ -38,6 +44,7 @@
   display: flex;
   padding: 25px 0 31px 0;
   border-radius: 0px 0 10px 10px;
+ 
   
 }
 
