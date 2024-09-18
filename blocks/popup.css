@@ -34,3 +34,31 @@
   border: none;
 
 }
+
+
+
+.popup__image{
+  max-width: 300px;
+  height: 300px;
+  object-fit: cover;
+}
+
+.card__trash {
+  background: none;
+  border: none;
+  position: absolute;
+  top: 18px;
+  right: 18px;
+ 
+  
+}
+
+.image__trash{
+  width: 20px;
+  cursor: pointer;
+  box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.15);
+}
+
+.image__trash:hover {
+
+}

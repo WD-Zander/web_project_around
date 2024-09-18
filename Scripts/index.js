@@ -38,11 +38,11 @@ function openImage(name, link) {
 
   closePopupImage.classList.add("popup__open");
 
-  const imageElement = closePopupImage.querySelector('.card__image');
-  imageElement.src= link;
-  const titleElement = closePopupImage.querySelector('.card__titel');
-  titleElement.textContent= name;
- 
+  const imageElement = closePopupImage.querySelector('.popup__image');
+  imageElement.src = link;
+  const titleElement = closePopupImage.querySelector('.popup__titel');
+  titleElement.textContent = name;
+
 }
 function generateCard(name, link) {
   const cardTemplate = document.querySelector(".template"); // Creo una variable que toma la clase .template deon DOM
@@ -54,7 +54,7 @@ function generateCard(name, link) {
   showImage.addEventListener("click", function (event) {
     //Agrega una nueva tarjeta //
 
-   openImage(name, link); // Llamo a la Funcion que Genera las Cards y le paso 2 Parametros  (nameValue, urlLinks)
+    openImage(name, link); // Llamo a la Funcion que Genera las Cards y le paso 2 Parametros  (nameValue, urlLinks)
   });
 
   showImage.src = link; // Selecciono los Parametros  link = Url
@@ -105,7 +105,7 @@ addCarModal.addEventListener("submit", function (event) {
   addCarModal.reset(); // Resetea el Formulario
 });
 
- 
+
 
 let editButton = document.querySelector(".section__edit");
 let formModal = document.querySelector(".form");
