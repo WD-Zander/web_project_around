@@ -1,14 +1,23 @@
 
 
 
-.button:hover {
-  background-color: grey;
-  border-color: transparent;
+
+
+
+.card__button {
+  margin-right: 18px;
+  
 }
-.card__button:hover {
-  opacity: 60%;
-  cursor: pointer;
+.card__button_active {
+
+  background-image: url(../image/Union.svg);
+  opacity: 100%;
+  background-repeat: no-repeat;
+ 
+ box-sizing: border-box;
 }
+
+
 .card {
   margin: auto;
   width: 282px;
@@ -70,15 +79,7 @@
   margin-left: 18px;
 }
 
-.card__button {
-  margin-right: 18px;
-}
-.card__button:active {
 
-  background-image: url(../image/card-button/likebutton.png);
-  opacity: 100%;
- 
-}
 @media screen and (max-width: 880px) {
   .card {
     width: 100%;

@@ -32,7 +32,7 @@ let closePopupImage = document.querySelector(".popup");
 
 // Genero una Funcion  (generateCards) donde tomo los parametros Link y Name de Arrive
 
-///////////////////////////////////
+//Inicio de Generar Tarjeta
 
 
 function openImage(name, link) {
@@ -61,21 +61,25 @@ function generateCard(name, link) {
     openImage(name, link); // Llamo a la Funcion que Genera las Cards y le paso 2 Parametros  (nameValue, urlLinks)
   });
 
-
   const removeCard = createCard.querySelector(".card__trash") // Declaro la Variable = createCard Ya Contiene todos la Datos del Template !IMPORTANTE!
   removeCard.addEventListener('click', function () {
     createCard.remove(); // ELIMINA LA TARJETA SELECCIONADA
   })
-
+  createCard.querySelector('.card__button').addEventListener('click', function(evt){
+    evt.target.classList.toggle('card__button_active'); // ('card__button_active') Correcto -- Incorrecto ('.card__button_active')  // No necesitamos el punto para referirnos a una clase. Simplemente proporcionamos el nombre de la clase como una cadena.
+    
+  })
 
   showImage.src = link; // Selecciono los Parametros  link = Url
   createCard.querySelector(".card__titel").textContent = name; // name Titulo
   return createCard;
 
+  
+
 }
 
 
-/////////////////////////////////////
+ // Fin de Generar Tarjeta
 
 initialCards.forEach(function (elem) {
   // Creo un loop donde el forecah pasara por cada uno de los elemenos del arrive
