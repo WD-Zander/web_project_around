@@ -1,11 +1,8 @@
 //Sprint 8
 
 
-
-
-
-
-const initialCards = [
+ 
+const initialCards  = [
   {
     name: "Valle de Yosemite",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg",
@@ -35,70 +32,52 @@ const initialCards = [
 const cardNode = document.querySelector(".cards"); // Selecciono del DOM la Clase .Cards
 let closePopupImage = document.querySelector(".popup");
 
-// Genero una Funcion  (generateCards) donde tomo los parametros Link y Name de Arrive
-
-//Inicio de Generar Tarjeta
-
+// Funciones
 
 function openImage(name, link) {
-
   closePopupImage.classList.add("popup__open");
-
   const imageElement = closePopupImage.querySelector('.popup__image');
   imageElement.src = link;
   const titleElement = closePopupImage.querySelector('.popup__titel');
   titleElement.textContent = name;
-
 }
 
-
-
 function generateCard(name, link) {
-  const cardTemplate = document.querySelector(".template"); // Creo una variable que toma la clase .template deon DOM
-  const createCard = cardTemplate.content
-    .querySelector(".card")
-    .cloneNode(true); // Clono del Dom el contenido de complete de Card
+  const cardTemplate = document.querySelector(".template"); // Creo una variable que toma la clase .template de DOM
+  const createCard = cardTemplate.content.querySelector(".card").cloneNode(true); // Clono del Dom el contenido de complete de Card
   const showImage = createCard.querySelector(".card__image");
 
   showImage.addEventListener("click", function (event) {
-    //Agrega una nueva tarjeta //
-
-    openImage(name, link); // Llamo a la Funcion que Genera las Cards y le paso 2 Parametros  (nameValue, urlLinks)
+    openImage(name, link); // Llamo a la Funcion que Genera las Cards
   });
 
-  const removeCard = createCard.querySelector(".card__trash") // Declaro la Variable = createCard Ya Contiene todos la Datos del Template !IMPORTANTE!
+  const removeCard = createCard.querySelector(".card__trash"); // Declaro la Variable
   removeCard.addEventListener('click', function () {
     createCard.remove(); // ELIMINA LA TARJETA SELECCIONADA
-  })
-  createCard.querySelector('.card__button').addEventListener('click', function(evt){
-    evt.target.classList.toggle('card__button_active'); // ('card__button_active') Correcto -- Incorrecto ('.card__button_active')  // No necesitamos el punto para referirnos a una clase. Simplemente proporcionamos el nombre de la clase como una cadena.
-    
-  })
+  });
 
-  showImage.src = link; // Selecciono los Parametros  link = Url
+  createCard.querySelector('.card__button').addEventListener('click', function(evt) {
+    evt.target.classList.toggle('card__button_active'); // Cambia el estado del botón
+  });
+
+  showImage.src = link; // Selecciono los Parametros
   createCard.querySelector(".card__titel").textContent = name; // name Titulo
   return createCard;
-
-  
-
 }
 
-
- // Fin de Generar Tarjeta
+// Fin de Generar Tarjeta
 
 initialCards.forEach(function (elem) {
-  // Creo un loop donde el forecah pasara por cada uno de los elemenos del arrive
-  const newCard = generateCard(elem.name, elem.link); //Creo una variable newCard que llamara a la Funcion generateCard pasandole los parametros name y link para que rrecorran cada uno de sus elemenstos
+  const newCard = generateCard(elem.name, elem.link); // Creo una variable newCard
   cardNode.prepend(newCard);
 });
 
+// Modal para agregar nuevas tarjetas
+
 let newPlaceButton = document.querySelector(".section__button");
 let addCarModal = document.querySelector(".form__new-place");
-let urlImage = document.querySelector("#urlLink");
-let textImage = document.querySelector("form__fild--place");
 let closeAddCarModal = document.querySelector(".form__close-place");
 
-// Trabajamos con el Modal que sera usado para abrir las tarjetas
 function openModalCard() {
   addCarModal.style.display = "flex";
 }
@@ -108,36 +87,32 @@ function closeModalCard() {
   addCarModal.style.display = "none";
 }
 
-function closePopup() {
-  closePopupImage.classList.remove("popup__open");
-}
-closeAddCarModal.addEventListener("click", closeModalCard);
-
-closePopupImage.addEventListener("click", closePopup);
-
 addCarModal.addEventListener("submit", function (event) {
-  //Agrega una nueva tarjeta //
   event.preventDefault();
-  const nameValue = event.target.nameTitle.value; //Busco de forma directa en el Form Evento > Target > Nombre del imput > .Valor
-  const urlLinks = event.target.urlLink.value; //Busco de forma directa en el Form Evento > Target > Nombre del imput > .Valor
-  const newAddCard = generateCard(nameValue, urlLinks); // Llamo a la Funcion que Genera las Cards y le paso 2 Parametros  (nameValue, urlLinks)
+  const nameValue = event.target.nameTitle.value; // Busco el nombre
+  const urlLinks = event.target.urlLink.value; // Busco la URL
+  const newAddCard = generateCard(nameValue, urlLinks); // Llamo a la Funcion que Genera las Cards
   cardNode.prepend(newAddCard); // Agrega la tarjeta al Inicio
   closeModalCard();
   addCarModal.reset(); // Resetea el Formulario
 });
 
+// Popup de imagen
 
+function closePopup() {
+  closePopupImage.classList.remove("popup__open");
+}
+closePopupImage.addEventListener("click", closePopup);
+
+// Edición del perfil
 
 let editButton = document.querySelector(".section__edit");
 let formModal = document.querySelector(".form");
 let closeButton = document.querySelector(".form__close");
-let form = document.querySelector(".form");
-
 let inputName = document.querySelector(".form__input");
 let h1 = document.querySelector(".section__profile-info");
 let h2 = document.querySelector(".section__profile-tag");
 let inputAbout = document.querySelector(".form__input-about");
-
 let buttonColor = document.querySelector(".submit__button");
 
 function openModal() {
@@ -156,7 +131,6 @@ function changeButtonColor() {
 }
 
 editButton.addEventListener("click", openModal);
-
 closeButton.addEventListener("click", closeModal);
 
 window.addEventListener("click", function (event) {
@@ -165,12 +139,10 @@ window.addEventListener("click", function (event) {
   }
 });
 
-form.addEventListener("submit", function (event) {
+formModal.addEventListener("submit", function (event) {
   event.preventDefault();
-  let getName = inputName.value;
-  let aboutMe = inputAbout.value;
-  h1.textContent = getName;
-  h2.textContent = aboutMe;
+  h1.textContent = inputName.value;
+  h2.textContent = inputAbout.value;
   closeModal();
 });
 
