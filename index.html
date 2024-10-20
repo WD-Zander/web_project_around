@@ -50,17 +50,25 @@
         <fieldset class="form__fieldset">
           <h2 class="form__title">Editar Perfil</h2>
           <input
+          id="name"
             type="text"
             placeholder="Nombre"
             required
             class="form__input"
+            minlength="2"
+            maxlength="40"
           />
+          <span class="form__error name-error"></span>
           <input
+          id="description"
             type="text"
             placeholder="Acerca de mi"
             required
             class="form__input-about"
+            minlength="2"
+            maxlength="40"
           />
+          <span class="form__error description-error"></span>
           <button type="submit" class="submit__button">Guardar</button>
         </fieldset>
         <img src="./image/CloseIcon.png" alt="" class="form__close">
@@ -68,18 +76,22 @@
       
       </form>
       
-      <form class="form__new-place">
+      <form class="form__new-place ">
         <div class="form__fild form__fild--place">
           <fieldset class="form__fieldset form__fild--place">
             <h2 class="form__title">Nuevo Lugar</h2>
             <input
+            id="place"
               type="text"
               placeholder="Titulo"
               required
               class="form__input form__fild--place"
               name="nameTitle"
+              minlength="2"
+              maxlength="30"
                
             /> 
+            <span class="form__error place-error"></span>
             <input
             id="urlLink"
               type="url"
@@ -87,8 +99,10 @@
               required
               class="form__input-about form__fild--place"
               name="urlLink"
+              id="link"
            
             />
+            <span class="form__error urlLink-error"></span>
             <button type="submit" class="submit__button form__fild--place">Guardar</button>
           </fieldset>
           <img src="./image/CloseIcon.png" alt="" class="form__close form__close-place">

@@ -1,5 +1,10 @@
 //Sprint 8
 
+
+
+
+
+
 const initialCards = [
   {
     name: "Valle de Yosemite",
@@ -171,6 +176,54 @@ form.addEventListener("submit", function (event) {
 
 inputName.addEventListener("input", changeButtonColor);
 inputAbout.addEventListener("input", changeButtonColor);
+
+
+//Trabajamos con el Form de  profile
+
+
+const formprofile = document.querySelector('.form__fieldset'); 
+const profileInputs = Array.from(formprofile.querySelectorAll('input'));
+const profileButton = formprofile.querySelector('.submit__button')
+
+const checkInputValidity = (inputElement, formElemnt, inputList,  buttonElement)  => {                                   
+  const errorElement = formElemnt.querySelector(`.${inputElement.id}-error`);
+  hasInvalidInput(inputList,  buttonElement )
+  if (!inputElement.checkValidity()) {
+    errorElement.textContent = inputElement.validationMessage;
+  } else {
+    errorElement.textContent = ''; 
+  }
+};
+
+profileInputs.forEach((inputElement) => {
+  inputElement.addEventListener('input', () => checkInputValidity(inputElement, formprofile, profileInputs , profileButton));
+});
+
+
+//Trabajamos con el Form de  New Place
+
+
+const formNewPlace = document.querySelector('.form__new-place');
+const placesInputs = Array.from(formNewPlace.querySelectorAll('input'));
+const palceButton = formNewPlace.querySelector('.submit__button')
+placesInputs.forEach((inputPlace) => {
+  inputPlace.addEventListener('input', () => checkInputValidity(inputPlace , formNewPlace, placesInputs, palceButton));
+});
+
+function hasInvalidInput ( inputList , buttonElement){
+const isInvalid = inputList.some((item) => !item.checkValidity()) //some retorna un true o false 
+console.log(isInvalid)
+if (isInvalid){
+buttonElement.disabled = true 
+}
+else {
+  buttonElement.disabled = false
+}
+}
+
+hasInvalidInput(profileInputs, profileButton )
+hasInvalidInput(placesInputs, palceButton )
+
 
 
 
