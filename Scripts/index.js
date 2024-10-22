@@ -156,3 +156,14 @@ document.addEventListener("keydown", function (event) {
     closeModalCard();
   }
 });
+
+//Cierre de Tarjeta New Place
+
+const formNewPlace = document.querySelector(".form__new-place");
+const closeAllForms = document.getElementById("closeNewPlace");
+closeAllForms.addEventListener("click", closeForms);
+function closeForms() {
+  console.log("holacocacola");
+  formNewPlace.style.display = "none";
+   
+}

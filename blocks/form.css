@@ -38,6 +38,12 @@
 
   display: none;
 }
+
+.form__new-place:disabled {
+  display: none;
+}
+
+
 .form__fild {
   position: relative;
   max-width: 430px;
