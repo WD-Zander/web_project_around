@@ -83,6 +83,10 @@
   text-align: left;
 }
 
+.form__input_has-error {
+  border-bottom: 1px solid red;
+}
+
 .form__input-about {
   max-width: 360px;
   width: 100%;
@@ -117,7 +121,7 @@
 }
 
 .form__error {
-  font-size: 10px;
+  
   color: red;
   padding: 0;
   margin: 0;
@@ -126,5 +130,8 @@
   font-weight: 400;
   line-height: 16.94px;
   text-align: left;
-  
+  font-family: Inter;
 }
+
+
+ 
