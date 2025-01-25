@@ -7,3 +7,6 @@
 @import url(../blocks/section.css);
 @import url(../blocks/popup.css);
 @import url(../blocks/template.css);
+@import url(../blocks/template.css);
+@import url(../vendor/normalize.css);
+@import url(../vendor/fonts.css);

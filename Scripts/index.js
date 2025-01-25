@@ -1,8 +1,19 @@
-//Sprint 8
+import { 
+  openImage, 
+  openModalCard, 
+  closeModalCard, 
+  openModal, 
+  closeModal, 
+  closePopup, 
+  closeModalOnEscape, 
+  closeModalOnClickOutside 
+} from './utils.js';
 
+import FormValidator from './FormValidator.js';
+import Card from './Card.js';
 
-
-const initialCards = [
+// Datos iniciales de las tarjetas
+let initialCards = [
   {
     name: "Valle de Yosemite",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg",
@@ -29,83 +40,42 @@ const initialCards = [
   },
 ];
 
-const cardNode = document.querySelector(".cards"); // Selecciono del DOM la Clase .Cards
-let closePopupImage = document.querySelector(".popup");
+// Referencias a elementos del DOM
+let cardNode = document.querySelector(".cards");
 
-// Funciones
-
-function openImage(name, link) {
-  closePopupImage.classList.add("popup__open");
-  const imageElement = closePopupImage.querySelector('.popup__image');
-  imageElement.src = link;
-  const titleElement = closePopupImage.querySelector('.popup__titel');
-  titleElement.textContent = name;
-}
-
+// Función para generar una tarjeta usando la clase Card
 function generateCard(name, link) {
-  const cardTemplate = document.querySelector(".template"); // Creo una variable que toma la clase .template de DOM
-  const createCard = cardTemplate.content.querySelector(".card").cloneNode(true); // Clono del Dom el contenido de complete de Card
-  const showImage = createCard.querySelector(".card__image");
-
-  showImage.addEventListener("click", function (event) {
-    openImage(name, link); // Llamo a la Funcion que Genera las Cards
-  });
-
-  const removeCard = createCard.querySelector(".card__trash"); // Declaro la Variable
-  removeCard.addEventListener('click', function () {
-    createCard.remove(); // ELIMINA LA TARJETA SELECCIONADA
-  });
-
-  createCard.querySelector('.card__button').addEventListener('click', function (evt) {
-    evt.target.classList.toggle('card__button_active'); // Cambia el estado del botón
-  });
-
-  showImage.src = link; // Selecciono los Parametros
-  createCard.querySelector(".card__titel").textContent = name; // name Titulo
-  return createCard;
+  let card = new Card(name, link, ".template");
+  return card.renderCard();
 }
 
-// Fin de Generar Tarjeta
-
+// Crear tarjetas iniciales
 initialCards.forEach(function (elem) {
-  const newCard = generateCard(elem.name, elem.link); // Creo una variable newCard
+  let newCard = generateCard(elem.name, elem.link);
   cardNode.prepend(newCard);
 });
 
 // Modal para agregar nuevas tarjetas
-
 let newPlaceButton = document.querySelector(".section__button");
-let addCarModal = document.querySelector(".form__new-place");
-let closeAddCarModal = document.querySelector(".form__close-place");
-
-function openModalCard() {
-  addCarModal.style.display = "flex";
-}
 newPlaceButton.addEventListener("click", openModalCard);
 
-function closeModalCard() {
-  addCarModal.style.display = "none";
-}
-
+let addCarModal = document.querySelector(".form__new-place");
 addCarModal.addEventListener("submit", function (event) {
   event.preventDefault();
-  const nameValue = event.target.nameTitle.value; // Busco el nombre
-  const urlLinks = event.target.urlLink.value; // Busco la URL
-  const newAddCard = generateCard(nameValue, urlLinks); // Llamo a la Funcion que Genera las Cards
-  cardNode.prepend(newAddCard); // Agrega la tarjeta al Inicio
+  let nameValue = event.target.nameTitle.value;
+  let urlLinks = event.target.urlLink.value;
+  
+  let newAddCard = generateCard(nameValue, urlLinks);
+  cardNode.prepend(newAddCard); 
   closeModalCard();
-  addCarModal.reset(); // Resetea el Formulario
+  addCarModal.reset();
 });
 
 // Popup de imagen
-
-function closePopup() {
-  closePopupImage.classList.remove("popup__open");
-}
+let closePopupImage = document.querySelector(".popup");
 closePopupImage.addEventListener("click", closePopup);
 
 // Edición del perfil
-
 let editButton = document.querySelector(".section__edit");
 let formModal = document.querySelector(".form");
 let closeButton = document.querySelector(".form__close");
@@ -113,46 +83,40 @@ let inputName = document.querySelector(".form__input");
 let h1 = document.querySelector(".section__profile-info");
 let h2 = document.querySelector(".section__profile-tag");
 let inputAbout = document.querySelector(".form__input-about");
-let buttonColor = document.querySelector(".submit__button");
-
-function openModal() {
-  formModal.style.display = "flex";
-  inputName.value = h1.textContent;
-  inputAbout.value = h2.textContent;
- // buttonColor.style.backgroundColor = "#FFFFFF";
-}
-
-function closeModal() {
-  formModal.style.display = "none";
-}
-
-function changeButtonColor() {
-  buttonColor.style.backgroundColor = "#000000";
-}
 
 editButton.addEventListener("click", openModal);
 closeButton.addEventListener("click", closeModal);
 
-window.addEventListener("click", function (event) {
-  if (event.target === formModal || event.target === addCarModal) {
-    closeModal() || closeModalCard();
-  }
-});
-
 formModal.addEventListener("submit", function (event) {
   event.preventDefault();
-  h1.textContent = inputName.value;
-  h2.textContent = inputAbout.value;
+  let getName = inputName.value;
+  let aboutMe = inputAbout.value;
+  h1.textContent = getName;
+  h2.textContent = aboutMe;
   closeModal();
 });
 
-//inputName.addEventListener("input", changeButtonColor);
-//inputAbout.addEventListener("input", changeButtonColor);
 
-document.addEventListener("keydown", function (event) {
-  // Esto Escuha el documento completo "document.addEventListener"
-  if (event.key === "Escape") {
-    closeModal();
-    closeModalCard();
-  }
+// Validación de formularios
+let forms = document.querySelectorAll('.form');
+forms.forEach((formElement) => {
+  let formValidator = new FormValidator({
+      formSelector: ".form",
+      inputSelector: ".form__input",
+      submitButtonSelector: ".submit__button",
+      inactiveButtonClass: "popup__button_disabled",
+      inputErrorClass: "form__input_has-error",
+      errorClass: "popup__error_visible"
+  }, formElement);
+
+  formValidator.enableValidation();
 });
+
+// Cerrar modales con la tecla Escape
+document.addEventListener("keydown", closeModalOnEscape);
+
+// Cerrar modales al hacer clic fuera de ellos
+window.addEventListener("click", closeModalOnClickOutside);
+
+
+
