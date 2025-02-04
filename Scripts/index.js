@@ -7,6 +7,12 @@ import Section from "./Section.js";
 // 1. Crear las instancias de los popups
 const popupWithImage = new PopupWithImage(".popup");
 const popupWithFormProfile = new PopupWithForm(".form", handleProfileFormSubmit);
+const popupNewPlace = new PopupWithForm(".form__new-place" , handleProfileFormSubmit)
+
+popupWithImage.setEventListeners();
+popupWithFormProfile.setEventListeners();
+popupNewPlace.setEventListeners();
+
 
 // 2. Crear la función para manejar el submit del formulario de perfil
 function handleProfileFormSubmit(data) {
@@ -59,4 +65,9 @@ let initialCards = [
 section.renderItems(initialCards);
 
 // 6. Agregar los event listeners para abrir y cerrar popups
-document.querySelector(".section__edit").addEventListener("click", () => popupWithFormProfile.open());
+document.querySelector(".section__edit").addEventListener("click", () => popupWithFormProfile.open()); //Abre el Formulario del Perfil
+
+document.querySelector(".section__button").addEventListener("click", () => popupNewPlace.open()); // Abre el Formulario para nuevas Cards
+
+
+

@@ -4,8 +4,7 @@ export default class PopupWithForm extends Popup {
   constructor(popupSelector, handleFormSubmit) {
     super(popupSelector);
     this._handleFormSubmit = handleFormSubmit;
-    this._form = this._popup.querySelector(".form");
-    
+    /* this._form = this._popup.querySelector(".form"); */
   }
 
   // Método privado para obtener los valores de los inputs
@@ -20,7 +19,10 @@ export default class PopupWithForm extends Popup {
   // Modificamos setEventListeners para agregar evento submit al formulario
   setEventListeners() {
     super.setEventListeners();
-    this._form.addEventListener("submit", (evt) => {
+    
+    //console.log("🚀 ~ PopupWithForm ~ this._form.addEventListener ~ this._form:", this._popup)
+
+    this._popup.addEventListener("submit", (evt) => {
       evt.preventDefault();
       this._handleFormSubmit(this._getInputValues());
       this.close(); // Cierra el popup después de enviar el formulario
