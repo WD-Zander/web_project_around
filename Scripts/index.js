@@ -1,18 +1,34 @@
-import { 
-  openImage, 
-  openModalCard, 
-  closeModalCard, 
-  openModal, 
-  closeModal, 
-  closePopup, 
-  closeModalOnEscape, 
-  closeModalOnClickOutside 
-} from './utils.js';
+import Card from "./Card.js";
+import PopupWithImage from "./PopupWithImage.js";
+import PopupWithForm from "./PopupWithForm.js";
+import UserInfo from "./UserInfo.js";
+import Section from "./Section.js";
 
-import FormValidator from './FormValidator.js';
-import Card from './Card.js';
+// 1. Crear las instancias de los popups
+const popupWithImage = new PopupWithImage(".popup");
+const popupWithFormProfile = new PopupWithForm(".form", handleProfileFormSubmit);
 
-// Datos iniciales de las tarjetas
+// 2. Crear la función para manejar el submit del formulario de perfil
+function handleProfileFormSubmit(data) {
+  const userInfo = new UserInfo({ nameSelector: ".section__profile-info", jobSelector: ".section__profile-tag" });
+  userInfo.setUserInfo(data);
+}
+
+// 3. Crear la función que se ejecutará cuando se haga clic en una tarjeta
+function handleCardClick(name, link) {
+  popupWithImage.open(name, link);
+}
+
+// 4. Crear la instancia de la clase Section
+const section = new Section({
+  renderer: (item) => {
+    const card = new Card(item.name, item.link, "#template", handleCardClick);
+    const cardElement = card.renderCard();
+    section.addItem(cardElement);
+  }
+}, ".cards");
+
+// 5. Agregar las tarjetas iniciales
 let initialCards = [
   {
     name: "Valle de Yosemite",
@@ -40,83 +56,7 @@ let initialCards = [
   },
 ];
 
-// Referencias a elementos del DOM
-let cardNode = document.querySelector(".cards");
+section.renderItems(initialCards);
 
-// Función para generar una tarjeta usando la clase Card
-function generateCard(name, link) {
-  let card = new Card(name, link, ".template");
-  return card.renderCard();
-}
-
-// Crear tarjetas iniciales
-initialCards.forEach(function (elem) {
-  let newCard = generateCard(elem.name, elem.link);
-  cardNode.prepend(newCard);
-});
-
-// Modal para agregar nuevas tarjetas
-let newPlaceButton = document.querySelector(".section__button");
-newPlaceButton.addEventListener("click", openModalCard);
-
-let addCarModal = document.querySelector(".form__new-place");
-addCarModal.addEventListener("submit", function (event) {
-  event.preventDefault();
-  let nameValue = event.target.nameTitle.value;
-  let urlLinks = event.target.urlLink.value;
-  
-  let newAddCard = generateCard(nameValue, urlLinks);
-  cardNode.prepend(newAddCard); 
-  closeModalCard();
-  addCarModal.reset();
-});
-
-// Popup de imagen
-let closePopupImage = document.querySelector(".popup");
-closePopupImage.addEventListener("click", closePopup);
-
-// Edición del perfil
-let editButton = document.querySelector(".section__edit");
-let formModal = document.querySelector(".form");
-let closeButton = document.querySelector(".form__close");
-let inputName = document.querySelector(".form__input");
-let h1 = document.querySelector(".section__profile-info");
-let h2 = document.querySelector(".section__profile-tag");
-let inputAbout = document.querySelector(".form__input-about");
-
-editButton.addEventListener("click", openModal);
-closeButton.addEventListener("click", closeModal);
-
-formModal.addEventListener("submit", function (event) {
-  event.preventDefault();
-  let getName = inputName.value;
-  let aboutMe = inputAbout.value;
-  h1.textContent = getName;
-  h2.textContent = aboutMe;
-  closeModal();
-});
-
-
-// Validación de formularios
-let forms = document.querySelectorAll('.form');
-forms.forEach((formElement) => {
-  let formValidator = new FormValidator({
-      formSelector: ".form",
-      inputSelector: ".form__input",
-      submitButtonSelector: ".submit__button",
-      inactiveButtonClass: "popup__button_disabled",
-      inputErrorClass: "form__input_has-error",
-      errorClass: "popup__error_visible"
-  }, formElement);
-
-  formValidator.enableValidation();
-});
-
-// Cerrar modales con la tecla Escape
-document.addEventListener("keydown", closeModalOnEscape);
-
-// Cerrar modales al hacer clic fuera de ellos
-window.addEventListener("click", closeModalOnClickOutside);
-
-
-
+// 6. Agregar los event listeners para abrir y cerrar popups
+document.querySelector(".section__edit").addEventListener("click", () => popupWithFormProfile.open());
