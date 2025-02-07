@@ -1,9 +1,11 @@
 export default  class Popup {
   constructor(popupSelector) {
     this._popup = document.querySelector(popupSelector);
+     
     this._handleEscClose = this._handleEscClose.bind(this);
     this.close = this.close.bind(this);
     this._closeButton = this._popup.querySelector('.form__close');
+     
   }
 
   // Método público para abrir el popup
@@ -33,6 +35,7 @@ export default  class Popup {
         event.target.classList.contains("form__close")
       ) {
         this.close();
+        
       }
     });
 

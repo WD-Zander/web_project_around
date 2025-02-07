@@ -50,7 +50,7 @@ function handleProfileFormSubmit(data) {
 }
 // 4. Crear la función que se ejecutará cuando se envíe el formulario de nueva tarjeta
 function handleNewPlaceFormSubmit(items) {
-  console.log(items); // Verifica los valores recibidos
+   
   const card = new Card(items.nameTitle, items.urlLink, "#template", handleCardClick); // Usa nameTitle y urlLink
   const cardElement = card.renderCard();
   section.addItem(cardElement);

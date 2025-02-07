@@ -7,6 +7,7 @@ export default class PopupWithForm extends Popup {
     this._handleFormSubmit = handleFormSubmit;
     this._inputList = this._popup.querySelectorAll(".form__input");
     this._form = this._popup.querySelector(".form");
+    console.log(this._popup)
   }
 
   // Método para recoger los valores de los inputs
@@ -34,5 +35,7 @@ export default class PopupWithForm extends Popup {
   // Modificamos close() para restablecer el formulario al cerrarlo
   close() {
     super.close();
+    this._popup.reset();
+    
   }
 }
