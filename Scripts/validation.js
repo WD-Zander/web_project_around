@@ -27,7 +27,7 @@ const hasInvalidInput = (inputList) => {
 };
 
 const toggleButtonState = (inputList, buttonElement, formConfig) => {
-    console.log(hasInvalidInput(inputList));
+ 
     if (hasInvalidInput(inputList)) {
         //buttonElement.classList.add("button_inactive");
         buttonElement.disabled = true;

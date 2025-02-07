@@ -1,16 +1,20 @@
-import Popup from "./Popup.js"; 
+import Popup from "./Popup.js";
 
 export default class PopupWithForm extends Popup {
   constructor(popupSelector, handleFormSubmit) {
+    
     super(popupSelector);
     this._handleFormSubmit = handleFormSubmit;
-    /* this._form = this._popup.querySelector(".form"); */
+    this._inputList = this._popup.querySelectorAll(".form__input");
+    this._form = this._popup.querySelector(".form");
   }
 
-  // Método privado para obtener los valores de los inputs
+  // Método para recoger los valores de los inputs
+
   _getInputValues() {
     const formValues = {};
     this._inputList.forEach(input => {
+ 
       formValues[input.name] = input.value;
     });
     return formValues;
@@ -19,8 +23,6 @@ export default class PopupWithForm extends Popup {
   // Modificamos setEventListeners para agregar evento submit al formulario
   setEventListeners() {
     super.setEventListeners();
-    
-    //console.log("🚀 ~ PopupWithForm ~ this._form.addEventListener ~ this._form:", this._popup)
 
     this._popup.addEventListener("submit", (evt) => {
       evt.preventDefault();
@@ -32,6 +34,5 @@ export default class PopupWithForm extends Popup {
   // Modificamos close() para restablecer el formulario al cerrarlo
   close() {
     super.close();
-    this._form.reset();
   }
 }

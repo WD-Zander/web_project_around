@@ -47,7 +47,7 @@
       <footer class="footer">
         <p class="footer__copyright">© 2024 Zander Garcia - Aroud The U.S.</p>
       </footer>
-      <form class="form">
+      <form class="form" id="form__profile">
         <div class="form__fild">
           <fieldset class="form__fieldset">
             <h2 class="form__title">Editar Perfil</h2>
@@ -59,6 +59,7 @@
               class="form__input"
               minlength="2"
               maxlength="40"
+              name="name"
             />
             <span class="form__error name-error"></span>
             <input
@@ -69,6 +70,7 @@
               class="form__input  form__input-about"
               minlength="2"
               maxlength="40"
+              name="job"
             />
             <span class="form__error description-error"></span>
             <button type="submit" class="submit__button">Guardar</button>
@@ -77,7 +79,7 @@
         </div>
       </form>
 
-      <form class="form form__new-place">
+      <form class="form form__new-place" id="form__new-place">
         <div class="form__fild form__fild--place">
           <fieldset class="form__fieldset form__fild--place">
             <h2 class="form__title">Nuevo Lugar</h2>
