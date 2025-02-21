@@ -4,6 +4,8 @@ import PopupWithForm from "./PopupWithForm.js";
 import UserInfo from "./UserInfo.js";
 import Section from "./Section.js";
 import FormValidator from "./FormValidator.js";
+import Api from "./Api.js";
+import { formConfig } from "./formConfig.js";
 
 // 1. Crear la instancia de UserInfo (una sola vez)
 const userInfo = new UserInfo({
@@ -26,15 +28,6 @@ popupWithImage.setEventListeners();
 popupWithFormProfile.setEventListeners();
 popupNewPlace.setEventListeners();
 
-const formConfig = {
-  formSelector: ".form",
-  inputSelector: ".form__input",
-  submitButtonSelector: ".submit__button",
-  inactiveButtonClass: "popup__button_disabled",
-  inputErrorClass: "form__input_has-error",
-  errorClass: "popup__error_visible",
-};
-
 const formProfile = document.querySelector("#form__profile"); // Activa la Validacion del Formulario del Perfin
 const profileFormValidator = new FormValidator(formConfig, formProfile);
 profileFormValidator.enableValidation();
@@ -50,19 +43,22 @@ function handleProfileFormSubmit(data) {
 }
 // 4. Crear la función que se ejecutará cuando se envíe el formulario de nueva tarjeta
 function handleNewPlaceFormSubmit(items) {
-   
-  const card = new Card(items.nameTitle, items.urlLink, "#template", handleCardClick); // Usa nameTitle y urlLink
+  const card = new Card(
+    items.nameTitle,
+    items.urlLink,
+    "#template",
+    handleCardClick
+  ); // Usa nameTitle y urlLink
   const cardElement = card.renderCard();
   section.addItem(cardElement);
 }
 
-
-// 4. Crear la función que se ejecutará cuando se haga clic en una tarjeta
+// 5. Crear la función que se ejecutará cuando se haga clic en una tarjeta
 function handleCardClick(name, link) {
   popupWithImage.open(name, link);
 }
 
-// 5. Crear la instancia de la clase Section
+// 6. Crear la instancia de la clase Section
 const section = new Section(
   {
     renderer: (item) => {
@@ -74,36 +70,6 @@ const section = new Section(
   ".cards"
 );
 
-// 6. Agregar las tarjetas iniciales
-let initialCards = [
-  {
-    name: "Valle de Yosemite",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg",
-  },
-  {
-    name: "Lago Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lake-louise.jpg",
-  },
-  {
-    name: "Montañas Calvas",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/latemar.jpg",
-  },
-  {
-    name: "Parque Nacional de la Vanoise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg",
-  },
-];
-
-section.renderItems(initialCards);
-
 // 7. Agregar los event listeners para abrir y cerrar popups
 document
   .querySelector(".section__edit")
@@ -112,3 +78,46 @@ document
 document
   .querySelector(".section__button")
   .addEventListener("click", () => popupNewPlace.open()); // Abre el Formulario para nuevas Cards
+
+
+  // 8. Crear el array initialCards y llenarlo con los datos de la API
+
+
+  const api = new Api("https://around-api.es.tripleten-services.com/v1", {
+    authorization: "dc190778-fc60-4d05-91c2-46d4fb62cf61",
+    "Content-Type": "application/json",
+  });
+
+
+  
+
+let initialCards = [];
+
+api.getInitialCards()
+  .then((cardsData) => {
+    initialCards = cardsData;
+    initialCards.forEach((card) => {
+      section.renderItems(initialCards);
+      console.log(card.name, card.link, card.isLiked);
+    });
+  })
+  .catch((error) => {
+    console.error("Error al obtener las tarjetas:", error);
+  });
+
+  api.getUserInfo()
+  .then((userData) => {
+    userInfo.setUserInfo(userData);
+    console.log(userData.name, userData.about);
+
+  })
+  .catch((error) => {
+    console.error("Error al obtener la info:", error);
+  });
+
+
+api.addCard().then((data) => {
+  console.log(data);
+}).catch((error) => {
+  console.error("Error al agregar una tarjeta:", error);
+});
