@@ -1,9 +1,11 @@
+
 .form__close {
   width: 40px;
   position: absolute;
   top: -15%;
   right: 0;
 }
+
 .form::after {
   content: "";
   position: fixed;
@@ -23,7 +25,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  display: none;
+  display: flex;
 }
 
 .form__new-place {
@@ -65,7 +67,7 @@
   font-size: 24px;
   font-weight: 900;
   line-height: 29.05px;
-  text-align: left;
+  text-align: center;
   color: black;
 }
 

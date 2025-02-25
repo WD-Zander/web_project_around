@@ -6,6 +6,7 @@ import Section from "./Section.js";
 import FormValidator from "./FormValidator.js";
 import Api from "./Api.js";
 import { formConfig } from "./formConfig.js";
+import { api } from "./Api.js"
 
 // 1. Crear la instancia de UserInfo (una sola vez)
 const userInfo = new UserInfo({
@@ -13,11 +14,13 @@ const userInfo = new UserInfo({
   jobSelector: ".section__profile-tag",
 });
 
+
 // 2. Crear las instancias de los popups
 const popupWithImage = new PopupWithImage(".popup");
 const popupWithFormProfile = new PopupWithForm(
   ".form",
-  handleProfileFormSubmit
+  handleProfileFormSubmit,
+
 );
 const popupNewPlace = new PopupWithForm(
   ".form__new-place",
@@ -38,11 +41,21 @@ NewPlaceValidator.enableValidation();
 ///
 
 // 3.   función handleProfileFormSubmit Pasa el array de datos del formulario al método setUserInfo de la instancia de UserInfo
-function handleProfileFormSubmit(data) {
-  userInfo.setUserInfo(data); //
+
+api.getUserInfo() // Obtiene la información del usuario en el servidor
+.then((userData) => {
+  userInfo.setUserInfo(userData);
+  console.log(userData.name, userData.about);
+
+})
+function handleProfileFormSubmit(items) { // Actualiza la información del usuario en el servidor
+  api.editUserInfo({name:items.name, about:items.about})
+  userInfo.setUserInfo({name:items.name, about:items.about});
+ 
 }
 // 4. Crear la función que se ejecutará cuando se envíe el formulario de nueva tarjeta
 function handleNewPlaceFormSubmit(items) {
+  api.addCard({name:items.nameTitle, link:items.urlLink})
   const card = new Card(
     items.nameTitle,
     items.urlLink,
@@ -80,44 +93,15 @@ document
   .addEventListener("click", () => popupNewPlace.open()); // Abre el Formulario para nuevas Cards
 
 
-  // 8. Crear el array initialCards y llenarlo con los datos de la API
 
 
-  const api = new Api("https://around-api.es.tripleten-services.com/v1", {
-    authorization: "dc190778-fc60-4d05-91c2-46d4fb62cf61",
-    "Content-Type": "application/json",
-  });
 
-
-  
 
 let initialCards = [];
 
-api.getInitialCards()
-  .then((cardsData) => {
-    initialCards = cardsData;
-    initialCards.forEach((card) => {
-      section.renderItems(initialCards);
-      console.log(card.name, card.link, card.isLiked);
-    });
-  })
-  .catch((error) => {
-    console.error("Error al obtener las tarjetas:", error);
-  });
+api.getInitialCards().then((cardsData) => {
+  initialCards = cardsData;
+    section.renderItems(initialCards);
 
-  api.getUserInfo()
-  .then((userData) => {
-    userInfo.setUserInfo(userData);
-    console.log(userData.name, userData.about);
-
-  })
-  .catch((error) => {
-    console.error("Error al obtener la info:", error);
-  });
-
-
-api.addCard().then((data) => {
-  console.log(data);
-}).catch((error) => {
-  console.error("Error al agregar una tarjeta:", error);
 });
+ 

@@ -30,13 +30,13 @@
 
         <div class="section__name">
           <div class="section__container">
-            <h1 class="section__profile-info">Zander Garcia</h1>
+            <h1 class="section__profile-info"></h1>
             <button class="section__edit">
               <img src="./image/Vector-pen.png" alt="image" class="pen__image" />
             </button>
           </div>
 
-          <h2 class="section__profile-tag">WEB Developer</h2>
+          <h2 class="section__profile-tag"></h2>
         </div>
 
         <div class="section__button">
@@ -62,7 +62,7 @@
               name="name"
             />
             <span class="form__error name-error"></span>
-            <input
+            <input 
               id="description"
               type="text"
               placeholder="Acerca de mi"
@@ -78,6 +78,26 @@
           <img src="./image/CloseIcon.png" alt="image" class="form__close" />
         </div>
       </form>
+
+
+      <form class="form form__delete-confirmation" id="form__profile">
+        <div class="form__fild">
+          <fieldset class="form__fieldset">
+            <h2 class="form__title">Esta Seguro de Eliminar?</h2>
+          
+            <span class="form__error description-error"></span>
+            <button type="submit" class="submit__button">Si</button>
+          </fieldset>
+          <img src="./image/CloseIcon.png" alt="image" class="form__close" />
+        </div>
+      </form>
+
+
+
+
+
+
+    
 
       <form class="form form__new-place" id="form__new-place">
         <div class="form__fild form__fild--place">
@@ -133,6 +153,7 @@
         </div>
       </div>
     </div>
+    
 
     <template id="template" class="template">
       <div class="card">
