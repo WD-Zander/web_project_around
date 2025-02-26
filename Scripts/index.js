@@ -75,13 +75,19 @@ function handleCardClick(name, link) {
 const section = new Section(
   {
     renderer: (item) => {
-      const card = new Card(item.name, item.link, "#template", handleCardClick);
+      const card = new Card(item.name, item.link, "#template", handleCardClick, item.isLiked, handleLikeClick, item._id);
       const cardElement = card.renderCard();
       section.addItem(cardElement);
     },
   },
   ".cards"
 );
+function handleLikeClick(id) {
+ api.like(id)
+ .then((data) => {
+   console.log(data);
+ })
+}
 
 // 7. Agregar los event listeners para abrir y cerrar popups
 document
