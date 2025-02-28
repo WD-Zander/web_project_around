@@ -13,7 +13,7 @@
     <link rel="icon" href="./favicon .ico" type="image/x-icon" class="ico" />
     <meta
       name="keywords"
-      content="responsive ,curso, mediaquerys, javascrits, Sprint7"
+      content="responsive ,curso, mediaquerys, javascrits, Sprint12"
     />
     <meta name="description" content="Proyecto 7 Tripleten" />
 
@@ -26,13 +26,25 @@
       </header>
       <hr class="line" />
       <section class="section">
-        <img src="./image/profile.jpg" alt="image" class="section_avatar" />
+        <div class="btn__avatar">
+          <img
+            src="./image/Vector-pen.png"
+            alt="image"
+            class="pen__image-avatar"
+          />
+
+          <img src="./image/profile.jpg" alt="image" class="section_avatar" />
+        </div>
 
         <div class="section__name">
           <div class="section__container">
             <h1 class="section__profile-info"></h1>
             <button class="section__edit">
-              <img src="./image/Vector-pen.png" alt="image" class="pen__image" />
+              <img
+                src="./image/Vector-pen.png"
+                alt="image"
+                class="pen__image"
+              />
             </button>
           </div>
 
@@ -45,7 +57,7 @@
       </section>
       <main class="cards"></main>
       <footer class="footer">
-        <p class="footer__copyright">© 2024 Zander Garcia - Aroud The U.S.</p>
+        <p class="footer__copyright">© 2025 Zander Garcia - Aroud The U.S.</p>
       </footer>
       <form class="form" id="form__profile">
         <div class="form__fild">
@@ -62,12 +74,12 @@
               name="name"
             />
             <span class="form__error name-error"></span>
-            <input 
+            <input
               id="description"
               type="text"
               placeholder="Acerca de mi"
               required
-              class="form__input  form__input-about"
+              class="form__input form__input-about"
               minlength="2"
               maxlength="40"
               name="about"
@@ -79,27 +91,25 @@
         </div>
       </form>
 
-    <!--    <script src="./Scripts/validation.js"></script>
-      <form class="form form__delete-confirmation" id="form__profile">
-        <div class="form__fild">
+      <form class="form form__avatar" id="form__avatar">
+        <div class="form__fild" id="">
           <fieldset class="form__fieldset">
-            <h2 class="form__title">Esta Seguro de Eliminar?</h2>
-          
-            <span class="form__error description-error"></span>
+            <h2 class="form__title">Cambiar Foto de Perfil</h2>
+            <input
+              type="url"
+              placeholder="Url Imagen"
+              required
+              class="form__input form__input-about form__fild--place"
+              name="urlLink-avatar"
+              id="link-avatar"
+            />
+
+            <span class="form__error link-avatar-error"></span>
             <button type="submit" class="submit__button">Si</button>
           </fieldset>
           <img src="./image/CloseIcon.png" alt="image" class="form__close" />
         </div>
       </form>
-
--->
-
-
-
-
-
-
-    
 
       <form class="form form__new-place" id="form__new-place">
         <div class="form__fild form__fild--place">
@@ -149,13 +159,16 @@
 
           <div class="popup__button-container">
             <button class="popup__button">
-              <img src="./image/icone-x-noir.png" alt="image" class="popup__close" />
+              <img
+                src="./image/icone-x-noir.png"
+                alt="image"
+                class="popup__close"
+              />
             </button>
           </div>
         </div>
       </div>
     </div>
-    
 
     <template id="template" class="template">
       <div class="card">
@@ -167,13 +180,16 @@
         <div class="Card__contenedor">
           <h2 class="card__titel"></h2>
           <button class="template__button">
-            <img src="./image/nolikebutton.svg" alt="image" class="card__button" />
+            <img
+              src="./image/nolikebutton.svg"
+              alt="image"
+              class="card__button"
+            />
           </button>
         </div>
       </div>
     </template>
 
     <script type="module" src="./Scripts/index.js"></script>
-    
   </body>
 </html>

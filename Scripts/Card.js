@@ -35,6 +35,7 @@ export default class Card {
   _toggleLike(evt) {
     evt.target.classList.toggle('card__button_active');
     this._handleLikeClick(this._id);
+
   }
 
   // Método público para renderizar la tarjeta
@@ -46,7 +47,9 @@ export default class Card {
     if(this._isLike) {	
       cardElement.querySelector('.card__button').classList.add('card__button_active');
     }
-
-    return cardElement;
+   else {
+        cardElement.querySelector('.card__button').classList.remove('card__button_active');
+    }
+   return cardElement;
   }
 }

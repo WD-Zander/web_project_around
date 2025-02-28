@@ -43,7 +43,7 @@ export default class Api {
         headers: this._headers,
         body: JSON.stringify({
             name: data.name,
-            link: data.link,
+            link: data.link
         }),
     }).then(this._checkResponse);
   }
@@ -62,8 +62,7 @@ export default class Api {
     }).then(this._checkResponse);
   }
   
-}
- 
+  }
 
 export const api = new Api("https://around-api.es.tripleten-services.com/v1", {
   authorization: "dc190778-fc60-4d05-91c2-46d4fb62cf61",

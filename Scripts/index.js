@@ -4,7 +4,6 @@ import PopupWithForm from "./PopupWithForm.js";
 import UserInfo from "./UserInfo.js";
 import Section from "./Section.js";
 import FormValidator from "./FormValidator.js";
-import Api from "./Api.js";
 import { formConfig } from "./formConfig.js";
 import { api } from "./Api.js"
 
@@ -12,6 +11,7 @@ import { api } from "./Api.js"
 const userInfo = new UserInfo({
   nameSelector: ".section__profile-info",
   jobSelector: ".section__profile-tag",
+  imageProfile: ".section_avatar"
 });
 
 
@@ -27,9 +27,15 @@ const popupNewPlace = new PopupWithForm(
   handleNewPlaceFormSubmit
 );
 
+const  popoupAvatar = new PopupWithForm(
+  ".form__avatar",
+  handleAvatarFormSubmit
+);
+
 popupWithImage.setEventListeners();
 popupWithFormProfile.setEventListeners();
 popupNewPlace.setEventListeners();
+popoupAvatar.setEventListeners();
 
 const formProfile = document.querySelector("#form__profile"); // Activa la Validacion del Formulario del Perfin
 const profileFormValidator = new FormValidator(formConfig, formProfile);
@@ -38,14 +44,20 @@ profileFormValidator.enableValidation();
 const formNewPlace = document.querySelector("#form__new-place"); //  Activa la Validacion del  Formulario de Nueva Card
 const NewPlaceValidator = new FormValidator(formConfig, formNewPlace);
 NewPlaceValidator.enableValidation();
+
+
+const formAvatar = document.querySelector("#form__avatar"); 
+const newAvatarProfile = new FormValidator(formConfig , formAvatar);
+newAvatarProfile.enableValidation();
 ///
 
 // 3.   función handleProfileFormSubmit Pasa el array de datos del formulario al método setUserInfo de la instancia de UserInfo
 
 api.getUserInfo() // Obtiene la información del usuario en el servidor
 .then((userData) => {
+ 
   userInfo.setUserInfo(userData);
-  console.log(userData.name, userData.about);
+
 
 })
 function handleProfileFormSubmit(items) { // Actualiza la información del usuario en el servidor
@@ -66,6 +78,10 @@ function handleNewPlaceFormSubmit(items) {
   section.addItem(cardElement);
 }
 
+function handleAvatarFormSubmit(){
+  console.log('hola')
+
+}
 // 5. Crear la función que se ejecutará cuando se haga clic en una tarjeta
 function handleCardClick(name, link) {
   popupWithImage.open(name, link);
@@ -82,11 +98,13 @@ const section = new Section(
   },
   ".cards"
 );
-function handleLikeClick(id) {
- api.like(id)
- .then((data) => {
-   console.log(data);
- })
+
+function handleLikeClick(id) { // Agrega o elimina un like a una tarjeta en el servidor. Usa un if para determinar si el botón tiene la clase card__button_active
+ if (document.querySelector('.card__button').classList.contains('card__button_active')) {
+  api.notLike(id)
+} 
+  api.like(id)
+
 }
 
 // 7. Agregar los event listeners para abrir y cerrar popups
@@ -98,9 +116,8 @@ document
   .querySelector(".section__button")
   .addEventListener("click", () => popupNewPlace.open()); // Abre el Formulario para nuevas Cards
 
-
-
-
+  document.querySelector(".pen__image-avatar").addEventListener("click",() => popoupAvatar.open());
+  
 
 
 let initialCards = [];
@@ -111,3 +128,8 @@ api.getInitialCards().then((cardsData) => {
 
 });
  
+
+
+
+
+
