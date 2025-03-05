@@ -7,8 +7,9 @@ export default class PopupWithForm extends Popup {
     this._handleFormSubmit = handleFormSubmit;
     this._inputList = this._popup.querySelectorAll(".form__input");
     this._form = this._popup.querySelector(".form");
-    console.log(popupSelector);  
-   
+
+
+    
   }
 
   // Método para recoger los valores de los inputs
@@ -28,7 +29,8 @@ export default class PopupWithForm extends Popup {
 
     this._popup.addEventListener("submit", (evt) => {
       evt.preventDefault();
-      this._handleFormSubmit(this._getInputValues());
+
+      this._handleFormSubmit(this._getInputValues(), this._id);
       this.close(); // Cierra el popup después de enviar el formulario
     });
   }
@@ -38,5 +40,11 @@ export default class PopupWithForm extends Popup {
     super.close();
     this._popup.reset();
     
+  }
+
+  open(id){
+    super.open();
+    this._id = id;
+     
   }
 }

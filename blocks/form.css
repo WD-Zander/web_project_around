@@ -141,3 +141,12 @@ position: fixed;
   text-align: left;
   font-family: Inter;
 }
+
+.form__delete{
+display: none;
+
+}
+
+.form__fieldset-delete {
+  height: auto;
+}

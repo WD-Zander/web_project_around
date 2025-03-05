@@ -61,9 +61,28 @@ export default class Api {
       headers: this._headers,
     }).then(this._checkResponse);
   }
+  editAvatar(data) {
+    //7. Edita el avatar del usuario
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: data.avatar,
+      }),
+    }).then(this._checkResponse);
+  }
   
+  deleteCard(cardId) {
+    //8. Elimina una tarjeta
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then(this._checkResponse);
+
   }
 
+  }
+  
 export const api = new Api("https://around-api.es.tripleten-services.com/v1", {
   authorization: "dc190778-fc60-4d05-91c2-46d4fb62cf61",
   "Content-Type": "application/json",

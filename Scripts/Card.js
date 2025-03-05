@@ -1,5 +1,5 @@
 export default class Card {
-  constructor(name, link, templateSelector, handleCardClick, isLiked, handleLikeClick, _id) {
+  constructor(name, link, templateSelector, handleCardClick, isLiked, handleLikeClick, _id , handleDeleteClick) {
     this._name = name;
     this._link = link;
     this._templateSelector = templateSelector;
@@ -7,6 +7,8 @@ export default class Card {
     this._isLike = isLiked
     this._handleLikeClick = handleLikeClick;  // Función para manejar el click en el botón de like
     this._id = _id
+    this._handleDeleteClick = handleDeleteClick;  // Función para manejar el click en el botón de eliminar
+
   }
 
   // Método privado para obtener la plantilla de la tarjeta
@@ -22,13 +24,13 @@ export default class Card {
     const likeButton = cardElement.querySelector(".card__button");
 
     showImage.addEventListener("click", () => this._handleCardClick(this._name, this._link));
-    removeCardButton.addEventListener("click", () => this._removeCard(cardElement));
+    removeCardButton.addEventListener("click", () => this._handleDeleteClick(this._id, cardElement));
     likeButton.addEventListener("click", (evt) => this._toggleLike(evt));
   }
 
   // Método privado para eliminar la tarjeta
-  _removeCard(cardElement) {
-    cardElement.remove();
+  removeCard(cardElement) {
+    this._handleDeleteClick(this._id, cardElement); // Llama a la función para manejar el click en el botón de eliminar y le pasa el id de la tarjeta
   }
 
   // Método privado para alternar el estado de like
