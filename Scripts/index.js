@@ -1,12 +1,13 @@
 import Card from "./Card.js";
 import PopupWithImage from "./PopupWithImage.js";
 import PopupWithForm from "./PopupWithForm.js";
+import PopupWithConfirmation from "./PopupWithConfirmation.js";
 import UserInfo from "./UserInfo.js";
 import Section from "./Section.js";
 import FormValidator from "./FormValidator.js";
 import { formConfig } from "./formConfig.js";
 import { api } from "./Api.js";
- 
+
 // 1. Crear la instancia de UserInfo (una sola vez)
 const userInfo = new UserInfo({
   nameSelector: ".section__profile-info",
@@ -25,24 +26,18 @@ const popupNewPlace = new PopupWithForm(
   handleNewPlaceFormSubmit
 );
 
-const popoupAvatar = new PopupWithForm(
-  ".form__avatar",
-   handleAvatarFormSubmit);
+const popoupAvatar = new PopupWithForm(".form__avatar", handleAvatarFormSubmit);
 
-
-  const popupDeleteCard = new PopupWithForm(
-    ".form__delete", 
-    handleDeleteClick);
-  
-    function handleDeleteClick ( _ ,id,) {
-      api.deleteCard(id)
-     
-      cardElement.remove();
-     // popupDeleteCard.close();
-      console.log(id);
-    }
-    
-
+const popupDeleteCard = new PopupWithConfirmation(
+  ".form__delete",
+  (id, cardElement) => {
+      // Recibe cardElement como argumento
+      return api.deleteCard(id).then(() => {
+          cardElement.remove(); // Usa cardElement recibido
+          popupDeleteCard.close();
+      });
+  }
+);
 
 popupWithImage.setEventListeners();
 popupWithFormProfile.setEventListeners();
@@ -69,40 +64,42 @@ api
   .then((userData) => {
     userInfo.setUserInfo(userData);
   });
+
 function handleProfileFormSubmit(items) {
   // Actualiza la información del usuario en el servidor
-  api.editUserInfo({ name: items.name, about: items.about });
   userInfo.setUserInfo({ name: items.name, about: items.about });
+  return api.editUserInfo({ name: items.name, about: items.about });
+ 
 }
 
 function handleAvatarFormSubmit(items) {
-  console.log(items.urlLinkavatar);
-  api.editAvatar({ avatar: items.urlLinkavatar});
-  userInfo.setUserInfo({ avatar: items.urlLinkavatar});
+  userInfo.setUserInfo({ avatar: items.urlLinkavatar });
+  return  api.editAvatar({ avatar: items.urlLinkavatar });
   
+
 }
-
-
 
 // 4. Crear la función que se ejecutará cuando se envíe el formulario de nueva tarjeta
 function handleNewPlaceFormSubmit(items) {
-  api.addCard({ name: items.nameTitle, link: items.urlLink });
-  const card = new Card(
-    items.nameTitle,
-    items.urlLink,
-    "#template",
-    handleCardClick,
-    items.isLiked,
-    handleLikeClick
-  ); // Usa nameTitle y urlLink
-  const cardElement = card.renderCard();
-  section.addItem(cardElement);
+  return api.addCard({ name: items.nameTitle, link: items.urlLink }).then ((data)=> 
+    {
+      console.log(data)
+      const card = new Card(
+        data.name,
+        data.link,
+        "#template",
+        handleCardClick,
+        data.isLiked,
+        handleLikeClick,
+        data._id,
+        handleDeleteClick
+      ); // Usa nameTitle y urlLink
+      const cardElement = card.renderCard();
+      section.addItem(cardElement);
+    } )
 }
 
-// 5. Crear la función que se ejecutará cuando se haga clic en una tarjeta
-function handleCardClick(name, link) {
-  popupWithImage.open(name, link);
-}
+
 
 // 6. Crear la instancia de la clase Section
 const section = new Section(
@@ -116,9 +113,7 @@ const section = new Section(
         item.isLiked,
         handleLikeClick,
         item._id,
-        //handleDeleteClick
-        ()=> popupDeleteCard.open(item._id)
-
+        handleDeleteClick
       );
       const cardElement = card.renderCard();
       section.addItem(cardElement);
@@ -127,9 +122,16 @@ const section = new Section(
   ".cards"
 );
 
+function handleDeleteClick(id, cardElement) {
+  return popupDeleteCard.open(id, cardElement);
+  
 
+}
 
-
+// 5. Crear la función que se ejecutará cuando se haga clic en una tarjeta
+function handleCardClick(name, link) {
+ return popupWithImage.open(name, link);
+}
 
 function handleLikeClick(id) {
   // Agrega o elimina un like a una tarjeta en el servidor. Usa un if para determinar si el botón tiene la clase card__button_active

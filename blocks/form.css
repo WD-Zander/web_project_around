@@ -144,9 +144,15 @@ position: fixed;
 
 .form__delete{
 display: none;
+z-index: 2;
 
 }
 
 .form__fieldset-delete {
   height: auto;
+}
+
+
+.form__close-confirmation {
+  width: 20px;
 }

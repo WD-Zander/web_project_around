@@ -30,7 +30,7 @@ export default class Card {
 
   // Método privado para eliminar la tarjeta
   removeCard(cardElement) {
-    this._handleDeleteClick(this._id, cardElement); // Llama a la función para manejar el click en el botón de eliminar y le pasa el id de la tarjeta
+   cardElement.remove();
   }
 
   // Método privado para alternar el estado de like
