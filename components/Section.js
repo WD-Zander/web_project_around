@@ -5,9 +5,14 @@ export default class Section {
   }
 
   // Método para agregar una tarjeta al contenedor
-  addItem(element) {
-    this._container.append(element);
+  addItem(element, isNew) {
+    if (isNew) {
+      this._container.prepend(element);
+    } else {
+        this._container.append(element);
+      }
   }
+
 
   // Método para renderizar todas las tarjetas
   renderItems(items) {

@@ -1,12 +1,12 @@
-import Card from "./Card.js";
-import PopupWithImage from "./PopupWithImage.js";
-import PopupWithForm from "./PopupWithForm.js";
-import PopupWithConfirmation from "./PopupWithConfirmation.js";
-import UserInfo from "./UserInfo.js";
-import Section from "./Section.js";
-import FormValidator from "./FormValidator.js";
-import { formConfig } from "./formConfig.js";
-import { api } from "./Api.js";
+import Card from "../components/Card.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
+import UserInfo from "../components/UserInfo.js";
+import Section from "../components/Section.js";
+import FormValidator from "../components/FormValidator.js";
+import { formConfig } from "../components/formConfig.js";
+import { api } from "../components/Api.js";
 
 // 1. Crear la instancia de UserInfo (una sola vez)
 const userInfo = new UserInfo({
@@ -83,7 +83,6 @@ function handleAvatarFormSubmit(items) {
 function handleNewPlaceFormSubmit(items) {
   return api.addCard({ name: items.nameTitle, link: items.urlLink }).then ((data)=> 
     {
-      console.log(data)
       const card = new Card(
         data.name,
         data.link,
@@ -93,9 +92,9 @@ function handleNewPlaceFormSubmit(items) {
         handleLikeClick,
         data._id,
         handleDeleteClick
-      ); // Usa nameTitle y urlLink
+      ); 
       const cardElement = card.renderCard();
-      section.addItem(cardElement);
+      section.addItem(cardElement, true);
     } )
 }
 
